@@ -51,19 +51,19 @@ public class Alumno {
 		
 	}
 	
-	void toString (Alumno alumno) {
+	public String toString () {
 		
-		System.out.println("Nombre: " + alumno.nombre + "\n" + 
+		return "Nombre: " + nombre + "\n" + 
 		
-			"Matrícula: " + alumno.matricula + "\n" +
+			"Matrícula: " + matricula + "\n" +
 			
-				"Notas: " + alumno.nota1 + ", " + alumno.nota2 + "\n" +
+				"Notas: " + nota1 + ", " + nota2 + "\n" +
 				
-				"Media: " + alumno.dameMedia(alumno.nota1, alumno.nota2));
+				"Media: " + dameMedia(nota1, nota2);
 		
 	}
 	
-	 static void VerAlumno() {
+	static void VerAlumno() {
 		 
 		 int matricula;
 		 
@@ -93,7 +93,7 @@ public class Alumno {
 		
 		alumno.setNota2(nota2);
 		
-		alumno.toString(alumno);
+		System.out.println(alumno.toString());
 
 		
 	}

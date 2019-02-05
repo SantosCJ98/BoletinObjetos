@@ -6,11 +6,11 @@ public class Alimentos {
 
 	private String nombre;
 
-	private int lipidos;
+	private float lipidos;
 
-	private int hidratoscarbono;
+	private float hidratoscarbono;
 	
-	private int proteinas;
+	private float proteinas;
 
 	private boolean origenanimal;
 
@@ -22,10 +22,22 @@ public class Alimentos {
 	Alimentos(String nombre) {
 
 		this.nombre = nombre;
+		
+		this.lipidos = 0;
+		
+		this.hidratoscarbono = 0;
+		
+		this.proteinas = 0;
+		
+		this.origenanimal = false;
+		
+		this.vitaminas = Contenido.BAJO;
+		
+		this.minerales = Contenido.BAJO;
 
 	}
 
-	Alimentos(String nombre, int lipidos, int hidratoscarbono, int proteinas, boolean origenanimal, Contenido vitaminas,
+	Alimentos(String nombre, float lipidos, float hidratoscarbono, float proteinas, boolean origenanimal, Contenido vitaminas,
 			Contenido minerales) {
 
 		this.nombre = nombre;
@@ -44,9 +56,9 @@ public class Alimentos {
 
 	}
 
-	boolean esDietetico(Alimentos alimento) {
+	static boolean esDietetico(float lipidos, Contenido vitaminas) {
 
-		if (alimento.lipidos < 20 && alimento.vitaminas.getCodigo() != 'B') {
+		if (lipidos < 20 && vitaminas.getCodigo() != 'B') {
 
 			return true;
 
@@ -60,77 +72,76 @@ public class Alimentos {
 
 	}
 	
-	void toString (Alimentos alimento) {
+	public String toString () {
 		
-		System.out.println("Nombre: " + nombre + "\n"
+		String res = "Nombre: " + nombre + "\n"
 				+ "Lipidos: " + lipidos + "\n"
 				+ "Hidratos de Carbono: " + hidratoscarbono + "\n" +
-				"Proteínas: " + proteinas);
+				"Proteínas: " + proteinas + "\n";
 		
-		if (origenanimal) {
-			
-			System.out.println("Origen Animal: Sí");
-			
-		}
 		
-		else {
-			
-			System.out.println("Origen Animal: No");
-			
-		}
+	if (origenanimal) {
 		
-		System.out.print("Vitaminas: ");
+		res = res + "Origen animal: Sí\n";
 		
-		if (vitaminas.getCodigo() == 'A') {
-			
-			System.out.println("Alto");
-			
-		}
-		
-		else if (vitaminas.getCodigo() == 'M') {
-			
-			System.out.println("Medio");
-			
-		}
-		
-		else {
-			
-			System.out.println("Bajo");
-			
-		}
-		
-		System.out.print("Minerales: ");
-		
-		if (minerales.getCodigo() == 'A') {
-			
-			System.out.println("Alto");
-			
-		}
-		
-		else if (minerales.getCodigo() == 'M') {
-			
-			System.out.println("Medio");
-			
-		}
-		
-		else {
-			
-			System.out.println("Bajo");
-			
-		}
 	}
 	
-	static float calculaContenidoEnergético (Alimentos alimento) {
+	else {
 		
-		float energia = (alimento.hidratoscarbono * 4.1f) + (alimento.lipidos * 9.4f) + (alimento.proteinas * 5.3f);
+		res = res + "Origen animal: No\n";
+		
+	}
+	
+	if (vitaminas.equals(Contenido.ALTO)) {
+		
+		res = res + "Vitaminas: Alto";
+		
+	}
+	
+	else if (vitaminas.equals(Contenido.MEDIO)) {
+		
+		res = res + "Vitaminas: Medio";
+		
+	}
+	
+	else {
+		
+		res = res + "Vitaminas: Bajo";
+		
+	}
+	
+	if (minerales.equals(Contenido.ALTO)) {
+		
+		res = res + "\nMinerales: Alto";
+		
+	}
+	
+	else if (minerales.equals(Contenido.MEDIO)) {
+		
+		res = res + "\nMinerales: Medio";
+		
+	}
+	
+	else {
+		
+		res = res + "\nMinerales: Bajo";
+		
+	}
+	
+		return res;
+	}
+	
+	static float calculaContenidoEnergetico (float hidratoscarbono, float lipidos, float proteinas) {
+		
+		float energia = ((hidratoscarbono/100) * 4.1f) + ((lipidos/100) * 9.4f) + ((proteinas/100) * 5.3f);
 		
 		return energia;
 		
 	}
 	
-	static boolean  esRecomendableparaDeportistas (Alimentos alimento) {
+	static boolean  esRecomendableparaDeportistas (float hidratoscarbono, float proteinas, float lipidos) {
 		
-		if ((alimento.hidratoscarbono >= 55 && alimento.hidratoscarbono <= 65) && (alimento.proteinas >= 10 && alimento.proteinas <= 15) && (alimento.lipidos >= 30 && alimento.lipidos <= 35)) {
+		if ((hidratoscarbono >= 55 && hidratoscarbono <= 65) && (proteinas >= 10 && proteinas <= 15) && (lipidos >= 30 && lipidos <= 35)) {
 			
 			return true;
 			
@@ -144,39 +155,56 @@ public class Alimentos {
 		
 	}
 	
-	public static void main (String args[]) {
+	static void VerAlimento (Alimentos alimento) {
 		
-		Alimentos ali1 = new Alimentos("Alimento2", 30, 20, 50, true, Contenido.ALTO, Contenido.BAJO);
+System.out.println(alimento.toString());
 		
-		ali1.toString(ali1);
+		System.out.println("Contenido Energético: " + calculaContenidoEnergetico(alimento.hidratoscarbono, alimento.lipidos, alimento.proteinas) + " Kcals.");
 		
-		System.out.println("Contenido energético: " + calculaContenidoEnergético(ali1) + " Kcals");
-		
-		if (ali1.esDietetico(ali1)) {
+		if (esDietetico(alimento.lipidos, alimento.vitaminas)) {
 			
-			System.out.println("Es diétetico");
+			System.out.println("Diétetico");
 			
 		}
 		
 		else {
 			
-			System.out.println("No es diétetico");
+			System.out.println("No diétetico");
 			
 		}
 		
-		if (ali1.esRecomendableparaDeportistas(ali1)) {
+		if (esRecomendableparaDeportistas(alimento.hidratoscarbono, alimento.proteinas, alimento.lipidos)) {
 			
-			System.out.println("Es recomendable para deportistas");
+			System.out.println("Recomendable para deportistas");
 			
 		}
 		
 		else {
 			
-			System.out.println("No es recomendable para deportistas");
+			System.out.println("No se recomienda a deportistas");
 			
 		}
 		
+		System.out.println("--------------------------------------------");
 		
 	}
+	
+	public static void main (String args[]) {
+		
+		Alimentos ali1 = new Alimentos("Pan");
+		
+		Alimentos ali2 = new Alimentos("Leche", 50, 20, 4, true, Contenido.ALTO, Contenido.MEDIO);
+		
+		//--------------------------------------------------------------------------------------------
+		
+		
+		VerAlimento(ali1);
+		
+		VerAlimento(ali2);
+		
+	
+	//-------------------------------------------------------------
 
+}
+	
 }

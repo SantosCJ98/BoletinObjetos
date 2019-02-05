@@ -42,20 +42,23 @@ public class Vehiculos {
 		this.cRuedas = cRuedas;
 	}
 
-	void toString(Vehiculos veh) {
-		System.out.printf("Modelo = " + modelo + ", Potencia = " + potencia + ", ");
+	public String toString() {
+		
+		String res = "Modelo = " + modelo + ", Potencia = " + potencia + ", ";
 		
 		if (cRuedas) {
 			
-			System.out.println("Tracción 4 ruedas: Sí");
+			res = res + "Tracción 4 ruedas: Sí";
 			
 		}
 		
 		else {
 			
-			System.out.println("Tracción 4 ruedas: No");
+			res = res + "Tracción 4 ruedas: No";
 			
 		}
+		
+		return res;
 	}
 	
 	static void pedirVehiculos () {
@@ -84,7 +87,7 @@ public class Vehiculos {
 			
 			cRuedas = readBoolean("¿Tracción a 4 ruedas");
 			
-			if (!(modelo.equals("FIN") || modelo.equals("fin"))) {
+			if (!modelo.equalsIgnoreCase("FIN")) {
 				
 				Vehiculos veh = new Vehiculos(modelo);
 				
@@ -107,9 +110,12 @@ public class Vehiculos {
 		for (i = 0; i < arrayveh.length; i++) {
 			
 			System.out.println("Vehículo nº " + (i+1));
-			arrayveh[i].toString(arrayveh[i]);
+			
+			System.out.println(arrayveh[i].toString());
 			
 		}
+		
+		System.out.println("Hasta luego");
 		
 			
 		}

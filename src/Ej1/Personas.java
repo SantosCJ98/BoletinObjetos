@@ -9,7 +9,7 @@ public class Personas {
 	private float altura;
 
 	private String ocupacion;
-	
+
 	private float sueldo;
 
 	String getNombre() {
@@ -61,17 +61,17 @@ public class Personas {
 		this.ocupacion = ocupacion;
 
 	}
-	
+
 	float getSueldo() {
-		
+
 		return sueldo;
-		
+
 	}
-	
+
 	void setSueldo(float sueldo) {
-		
+
 		this.sueldo = sueldo;
-		
+
 	}
 
 	/*
@@ -91,49 +91,44 @@ public class Personas {
 	 * 
 	 */
 
-	
-	  //1.4
-	  
-	  public Personas(String nombre, int edad, float altura, String ocupacion) {
-	  
-	  this.nombre = nombre;
-	  
-	  this.edad = edad;
-	  
-	  this.altura = altura;
-	  
-	  this.ocupacion = ocupacion;
-	  
-	  }
-	 
-	 
+	// 1.4
+
+	public Personas(String nombre, int edad, float altura, String ocupacion) {
+
+		this.nombre = nombre;
+
+		this.edad = edad;
+
+		this.altura = altura;
+
+		this.ocupacion = ocupacion;
+
+	}
 
 	// 1.5
-	
+
 	public Personas() {
-		
+
 		this("Sin nombre", 0, 0.0f, "Sin ocupación");
-		
+
 	}
-	
-	//1.6
-	
-	float sumarsueldo (Personas persona) {
-		
+
+	// 1.6
+
+	float sumarsueldo(Personas persona) {
+
 		sueldo += persona.sueldo;
-		
+
 		return sueldo;
-		
+
 	}
-	
+
 	float doblar_sueldo() {
-		
+
 		sumarsueldo(this);
-		
+
 		return sueldo;
-		
+
 	}
-
-
 
 }

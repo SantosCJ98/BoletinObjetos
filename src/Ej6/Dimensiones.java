@@ -137,7 +137,15 @@ public class Dimensiones {
 		while (opcion != 4
 				&& (!esPosibleApilarPaquetes(dimensionesOtroPaquete, alturaMaximaparaApilar(AlturaMaximaparaApilar)))) {
 
+			System.out.println("Altura maxima: " + AlturaMaximaparaApilar);
+
+			System.out.println("Altura del paquete colocado (y): " + this.getY());
+
+			System.out.println("Altura del paquete a colocar (y): " + dimensionesOtroPaquete.getY());
+
 			System.out.println("No se puede apilar. Inténtalo girándola.");
+
+			System.out.println(dimensionesOtroPaquete.toString());
 
 			System.out.println(
 					"1. Girar 90º (eje X)\n2. Girar 90º (eje Y)\n3. Girar 90º (eje Z)\n4. Dejar de intentarlo");
@@ -147,15 +155,15 @@ public class Dimensiones {
 			switch (opcion) {
 
 			case 1:
-				girarDimensionX();
+				dimensionesOtroPaquete.girarDimensionX();
 				break;
 
 			case 2:
-				girarDimensionY();
+				dimensionesOtroPaquete.girarDimensionY();
 				break;
 
 			case 3:
-				girarDimensionZ();
+				dimensionesOtroPaquete.girarDimensionZ();
 				break;
 
 			}
@@ -163,13 +171,13 @@ public class Dimensiones {
 
 		if (esPosibleApilarPaquetes(dimensionesOtroPaquete, alturaMaximaparaApilar(AlturaMaximaparaApilar))) {
 
-			return "Se puede apilar";
+			return "Apilado";
 
 		}
 
 		else {
 
-			return "No se puede apilar";
+			return "No apilado";
 
 		}
 
@@ -177,9 +185,9 @@ public class Dimensiones {
 
 	public static void main(String args[]) {
 
-		Dimensiones di = new Dimensiones(0, 7, 0);
+		Dimensiones di = new Dimensiones(1, 7, 2);
 
-		Dimensiones di2 = new Dimensiones(3, 4, 0);
+		Dimensiones di2 = new Dimensiones(4, 4, 2);
 
 		System.out.println(di.ApilarPaquetes(di2, 10));
 

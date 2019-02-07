@@ -8,21 +8,21 @@ public class Clase3 {
 
 		Visibilidad otraclaseotropaquete = new Visibilidad();
 
-		otraclaseotropaquete.privado = 0;
+		// No visible otraclaseotropaquete.privado = 0;
 
-		otraclaseotropaquete.amigable = 0;
+		// No visible otraclaseotropaquete.amigable = 0;
 
-		otraclaseotropaquete.protegido = 0;
+		// No visible otraclaseotropaquete.protegido = 0;
 
 		otraclaseotropaquete.publico = 0;
 
 		otraclaseotropaquete.met_publico();
 
-		otraclaseotropaquete.met_amigable();
+		// No visible otraclaseotropaquete.met_amigable();
 
-		otraclaseotropaquete.met_privado();
+		// No visible otraclaseotropaquete.met_privado();
 
-		otraclaseotropaquete.met_protegido();
+		// No visible otraclaseotropaquete.met_protegido();
 
 	}
 

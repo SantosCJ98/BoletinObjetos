@@ -6,7 +6,7 @@ public class Clase2 {
 
 		Visibilidad otraclasemismopaquete = new Visibilidad();
 
-		otraclasemismopaquete.privado = 0;
+//		otraclasemismopaquete.privado = 0; Privado no es visible en otra clase en el mismo paquete
 
 		otraclasemismopaquete.amigable = 0;
 
@@ -18,7 +18,7 @@ public class Clase2 {
 
 		otraclasemismopaquete.met_amigable();
 
-		otraclasemismopaquete.met_privado();
+//		otraclasemismopaquete.met_privado();  Privado no es visible en otra clase en el mismo paquete
 
 		otraclasemismopaquete.met_protegido();
 

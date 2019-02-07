@@ -6,7 +6,7 @@ public class Ej1_2 {
 
 	public static void main(String[] args) {
 
-		Personas persona1 = new Personas();
+		Persona persona1 = new Persona();
 
 		System.out.println("Introduce un nombre:");
 
